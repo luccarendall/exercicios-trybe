@@ -1,0 +1,62 @@
+Comandos básicos
+Lista imagens locais
+-> docker image list
+
+Baixar uma imagem
+-> docker image pull {nome-da-imagem}
+
+Inspecionar uma imagem (informar todos os dados referentes à imagem)
+-> docker image inspect {nome-da-imagem}
+
+Iniciar o container
+->  docker container run <parâmetros> <imagem> <CMD> <argumentos>
+ex: docker container run -it --rm --name meu_python python bash
+
+Mapear volumes
+->  docker container run -it --rm -v "<host>:<container>" python
+
+Mapear portas
+->  docker container run -it --rm -p "<porta-local>:<porta-do-container>" python
+ex: docker container run -it --rm -p 80:8080 python
+obs: para mapear para uma porta aleatória usar o -P (maiusculo):
+docker container run -it -d -P 8080 python
+
+Listar containers
+-> docker ps <parâmetros>
+-> docker container ls <parâmetros>
+-> docker container list <parâmetros>
+parâmetros:
+-a - Lista todos os containers, inclusive os desligados
+-l - Lista os últimos containers, inclusive os desligados
+-n - Lista os últimos N containers, inclusive os desligados
+-q - Lista apenas os ids dos containers, ótimo para utilização em scripts
+
+Parar um container
+-> docker container stop {nome-do-container}
+
+Iniciar um container que foi parado(parado)
+-> docker container start {nome-do-container}
+--//--
+
+Remover todos os containers e imagens Docker que estejam em seu computador:
+-> docker system prune -af
+--//--
+
+Criar uma imagem que, quando executada como um container, imprime a mensagem: "Pizza é a melhor comida que existe":
+Crie um arquivo Dockerfile e escreva:
+-> FROM alpine:3.14
+-> CMD ["echo", "Pizza é a melhor comida que existe"]
+ou 
+-> CMD echo "Pizza é a melhor comida que existe"
+
+Para criar uma imagem a partir desse Dockerfile, use o comando docker build <flags> -t <nome-da-imagem> <contexto>
+
+ - Uma flag -t, que indicará qual será o nome da imagem, e também a tag, se utilizar o formato <nome>:<tag>;
+ - Um contexto, ou seja, em qual caminho de pasta o Docker deve se basear para processar o arquivo Dockerfile.
+ - Normalmente utilizamos apenas . (ponto final), que indica a pasta atual.
+ 
+ Executamos então o comando " docker build -t pizza-imagem . " dentro da pasta onde está o dockerfile
+--//--
+
+Executando um novo container com nossa imagem:
+-> docker run --rm pizza-imagem 

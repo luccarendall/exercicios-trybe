@@ -1,0 +1,36 @@
+Vamos juntar tudo o que aprendemos até aqui e exercitar mais ainda nosso aprendizado!
+
+1. No Docker Hub, utilizando a caixa de busca ("Search for great content"), busque pela imagem da Distribuição Linux Debian.
+
+2. Uma vez que encontrar a imagem oficial, acesse-a (clicando em seu card) e verifique na página de detalhes. Confira se existe algum comando para baixar a imagem localmente sem ter que criar um contêiner para isso.
+
+3. Baixe a imagem utilizando a tag: stable-slim, que é uma versão reduzida da distribuição.
+ ➡️ docker pull debian:stable-slim
+ 
+4. Após baixar a imagem para seu computador local, crie e execute um contêiner no modo interativo utilizando essa imagem como referência — não esqueça referenciar a tag.
+ ➡️ docker container run -it debian:stable-slim
+ 
+5. No terminal, você deve conseguir rodar o comando cat /etc/*-release, que vai retornar os dados da distribuição Debian que está sendo rodada dentro do contêiner.
+
+6. Encerre o terminal.
+
+7. Verifique na sua lista de contêiners qual contêiner se refere ao exercício que acabou de praticar.
+➡️ docker ps -l ou docker container ls -l (para mostrar qual foi o último container criado). Ou docker ps -a para mostrar todos.
+
+8. Inicie o mesmo contêiner novamente, sem criar outro. Valide se ele está ativo na lista de contêiners.
+➡️ docker start <CONTAINER ID || NAMES> onde <CONTAINER ID || NAMES> é o ID do container. O container ficou ativo (campo STATUS) após isso.
+
+9. Retome o contêiner que foi criado anteriormente neste exercício.
+➡️ docker attach <CONTAINER ID || NAMES>. Já que o container foi inicializado anteriormente de modo interativo, pudemos retomar seu terminal.
+
+10. Rode o comando cat /etc/debian_version que deve retornar a versão atual do sistema do contêiner.
+11. Encerre o terminal.
+
+12. Remova somente o contêiner criado para esse exercício.
+➡️ docker container rm <CONTAINER ID || NAMES>
+
+[BÔNUS] Crie e rode de modo interativo em modo 'Cleanup', a imagem andrius/ascii-patrol.
+➡️ Para rodar o container e removê-lo logo em seguida (cleanup), foi utilizado o comando docker run -it --rm andrius/ascii-patrol, onde o -it permite a interação com o jogo pelo terminal e o --rm garante que o container será removido ao terminar o jogo.
+
+[BÔNUS] **Encerre o contêiner utilizando os botões [ctrl] + [c].
+

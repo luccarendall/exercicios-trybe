@@ -1,0 +1,31 @@
+ h1 {
+   font-family: sans-serif;
+   font-size: 65px;
+   font-weight: 600;
+   color: rgb(236, 156, 8);
+   text-decoration:underline;
+   text-align:center;
+ }
+
+ body {
+     font-size: 16px;
+     line-height: 40px;
+     text-align: justify;
+ }
+
+ p{
+     font-size: 3em;
+     color: rgb(196, 115, 11);
+ }
+
+ #amarelo{ 
+     background-color: yellow;
+ }
+
+ #vermelho{ 
+     background-color: red;
+ }
+
+ #marrom{ 
+     background-color: brown;
+ }
