@@ -72,5 +72,32 @@ aula-docker-compose_frontend_1   npm start                        Up      0.0.0.
 Para isso, abra um navegador web e acesse o endereço  `http://localhost:3000`.
 
 #### Reconstruindo a Imagem Docker
->É comum fazer várias alterações em nosso código durante a fase de desenvolvimento. Algumas dessas alterações nos obrigam a **reconstruir** a Imagem Docker, ou seja, precisamos _forçar_ a execução do `docker build` novamente.
+É comum fazer várias alterações em nosso código durante a fase de desenvolvimento. Algumas dessas alterações nos obrigam a **reconstruir** a Imagem Docker, ou seja, precisamos _forçar_ a execução do `docker build` novamente.
 
+Podemos deixar nítido que as imagens precisam ser construídas novamente usando o _Compose_. Para isso, utilizamos a flag `--build`, junto com o comando `docker-compose up`.
+
+```bash
+docker-compose up -d --build
+```
+
+#### Descendo todos os serviços
+Chamamos o ato de parar a execução de todos os serviços do _Compose_ de **descer**. Se quisermos descer nossos serviços, podemos utilizar o comando `docker-compose down`. Com ele, todos os containers serão parados e removidos.
+
+```bash
+docker-compose down
+```
+
+#### Subindo serviços específicos
+
+Além de subir e descer, é possível  **subir apenas parte dos serviços**! Por exemplo: imagine que precisamos apenas executar o serviço de  **back-end**. Logo, os únicos serviços necessários nesta demanda são o  **database**  e o próprio  **back-end**. Para isso, podemos usar o comando  `docker-compose up <serviço>`.
+
+```bash
+docker-compose up backend
+```
+
+##### Dicas:
+>Para limitar a quantidade de linhas de  _logs_  retornadas pelo comando, podemos usar a flag  `--tail`  especificando quantas linhas desejamos que o comando retorne. Para isso, execute o seguinte comando abaixo:
+```bash
+docker-compose logs --tail 5 database
+```
+**De olho na dica:** de maneira similar ao comando no **Docker**, podemos utilizar a flag `-f` ou `--follow` para acompanhar em tempo real as saídas dos containers. Para sair, use `Ctrl+C` ou `Command+C`.
