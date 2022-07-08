@@ -1,0 +1,35 @@
+# Versão do Arquivo Compose
+version: '3'
+
+# Criando Serviços, mapeamento de portas e configuração de politica de reinicialização
+services:
+  frontend:
+    build: frontend/    # Especificamos o contexto, ou seja, a pasta onde está o Dockerfile.
+    restart: on-failure
+    ports:
+      - 3000:3000
+    depends_on:
+      - backend
+  
+  backend:
+    build: backend/     # Mesmo caso aqui.
+    restart: on-failure
+    ports:
+      - 3001:3001
+    environment:
+      - DB_HOST=database # O serviço backend agora possui uma variável de ambiente chamada DB_HOST, que poderá ser utilizada pelo servidor para se conectar ao banco de dados.
+    depends_on:
+      - database
+
+  database:
+    image: betrybe/docker-compose-example-database:v1    # Especificamos a Imagem Docker diretamente.
+    restart: on-failure
+# Nosso arquivo vai funcionar como se estivéssemos executando o comando docker build para o back-end e o front-end. Logo depois, três vezes o comando docker run, um vez para cada serviço.
+
+# E se o container der problema?
+# Pensando nisso, devemos configurar uma política de reinicialização (mais detalhes no arquivo resumo.md)
+
+# Dependência:
+# Cada serviço do nosso arquivo docker-compose.yaml recebeu a chave depends_on, que é uma lista de quais serviços o Compose deve executar primeiro, antes de executar o serviço atual. Nesse exemplo, os serviços serão iniciados respeitando a ordem que especificamos: primeiro o serviço database será iniciado, depois o serviço backend e finalmente o serviço frontend!
+
+# Agora que criamos nosso primeiro arquivo Compose, está na hora de finalmente executá-lo e orquestrar nossos containers! Bora lá? 🐋
