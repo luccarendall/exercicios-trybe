@@ -5,15 +5,17 @@ version: '3'
 services:
   frontend:
     build: frontend/    # Especificamos o contexto, ou seja, a pasta onde está o Dockerfile.
-    restart: on-failure
+    restart: always
     ports:
       - 3000:3000
     depends_on:
       - backend
-  
+    volumes:
+      - ./logs:/var/log/frontend
+
   backend:
     build: backend/     # Mesmo caso aqui.
-    restart: on-failure
+    restart: always
     ports:
       - 3001:3001
     environment:
@@ -23,7 +25,12 @@ services:
 
   database:
     image: betrybe/docker-compose-example-database:v1    # Especificamos a Imagem Docker diretamente.
-    restart: on-failure
+    restart: always
+    volumes:
+      - dados-do-banco:/data/db
+
+volumes:
+  dados-do-banco:
 # Nosso arquivo vai funcionar como se estivéssemos executando o comando docker build para o back-end e o front-end. Logo depois, três vezes o comando docker run, um vez para cada serviço.
 
 # E se o container der problema?
