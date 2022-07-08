@@ -101,3 +101,8 @@ docker-compose up backend
 docker-compose logs --tail 5 database
 ```
 **De olho na dica:** de maneira similar ao comando no **Docker**, podemos utilizar a flag `-f` ou `--follow` para acompanhar em tempo real as saídas dos containers. Para sair, use `Ctrl+C` ou `Command+C`.
+
+### Diferença entre serviços e containers
+O comando  `docker-compose up`  aceita a flag  `--scale service=<número-de-replicas>`, onde podemos configurar a quantidade de réplicas para um serviço. Entretanto, esta opção normalmente é utilizada em ambientes de produção e não é necessária para nossos estudos agora.
+
+> 🧠  **Lembre-se**: o_Compose_  chama os containers orquestrados de  **serviço**  para possibilitar a criação de várias réplicas, desde que a situação se mostre necessária para isso. 
