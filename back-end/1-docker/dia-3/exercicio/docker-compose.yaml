@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  Apache:
+   image: httpd:2.4 
+   restart: always
+   ports:
+   - 4545:80
+
+  #  ID do container: 5d6d0e722e60
